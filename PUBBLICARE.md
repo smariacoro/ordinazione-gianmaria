@@ -47,7 +47,7 @@ Per far comparire la foto quando si condivide il link, in `scrollcraft/builds/gi
 
 ## Indirizzo personalizzato
 
-Il sito è impostato per `https://corosmaria.github.io/ordinazione-gianmaria/`: repository `ordinazione-gianmaria` sull'account `corosmaria`. Se cambi indirizzo, aggiorna `SITE_URL` in `scrollcraft/builds/gian-maria/src/content.mjs` e rigenera il sito.
+Il sito è impostato per `https://smariacoro.github.io/ordinazione-gianmaria/`: repository `ordinazione-gianmaria` sull'account `smariacoro`. Se cambi indirizzo, aggiorna `SITE_URL` in `scrollcraft/builds/gian-maria/src/content.mjs` e rigenera il sito.
 
 Alternative:
 

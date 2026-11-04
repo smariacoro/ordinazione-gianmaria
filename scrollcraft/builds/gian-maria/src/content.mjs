@@ -1,7 +1,7 @@
 // Every visible word on the site, per language. Facts come from context.txt.
 // To change a fact: edit it here in all five languages, then run `node build.mjs`.
 
-export const SITE_URL = "https://corosmaria.github.io/ordinazione-gianmaria/"; // e.g. "https://name.github.io/repo/" once known: enables share previews.
+export const SITE_URL = "https://smariacoro.github.io/ordinazione-gianmaria/"; // e.g. "https://name.github.io/repo/" once known: enables share previews.
 // Web app address of the Google Sheet (see PUBBLICARE.md). Empty = the form stays hidden.
 export const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwfpgJ8dYByPcc3TmAYg_bJS5IkFaXj9jfv5Se4DmhF8ZEbGtWqWYXSFIWqV6wKwSsW9Q/exec";
 export const RSVP_URL = ""; // Link behind the invitation's QR code. Empty = no button is shown.
