@@ -65,8 +65,8 @@ p { max-width: 62ch; text-wrap: pretty; }
 }
 .bar__in { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .bar__here { color: inherit; font-family: var(--sc-font-display); font-weight: 700; font-size: 1.3125rem; letter-spacing: -0.015em; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-block: 0.5rem; }
-.menu { position: relative; flex: none; }
-.menu summary {
+.bar__tools { position: relative; flex: none; display: flex; align-items: center; gap: 0.5rem; }
+.drop summary {
   display: flex; align-items: center; gap: 0.5rem;
   min-height: 2.875rem; padding: 0.25rem 1.125rem 0.25rem 0.9375rem;
   background: var(--sc-ink); color: #fff;
@@ -74,10 +74,16 @@ p { max-width: 62ch; text-wrap: pretty; }
   font-weight: 700; cursor: pointer; list-style: none; user-select: none;
   transition: background-color 140ms var(--sc-ease-out);
 }
-.menu summary::-webkit-details-marker { display: none; }
+.drop summary::-webkit-details-marker { display: none; }
 .menu summary svg { width: 1.25rem; height: 1.25rem; }
-.menu[open] summary { background: var(--sc-accent); }
-@media (hover: hover) and (pointer: fine) { .menu summary:hover { background: var(--sc-accent); } }
+.drop[open] summary { background: var(--sc-accent); color: #fff; }
+@media (hover: hover) and (pointer: fine) { .drop summary:hover { background: var(--sc-accent); color: #fff; } }
+/* The language button is the quiet one: Menu stays the main control. */
+.lang summary { background: var(--sc-surface); color: var(--sc-ink); padding: 0.25rem 0.875rem 0.25rem 0.75rem; }
+.lang__caret { width: 0.75rem !important; height: 0.5rem !important; flex: none; transition: transform 140ms var(--sc-ease-out); }
+.lang[open] .lang__caret { transform: rotate(180deg); }
+.lang__panel { width: min(15rem, calc(100vw - 2rem)); }
+@media (max-width: 560px) { .lang__name { display: none; } }
 .menu__panel {
   position: absolute; right: 0; top: calc(100% + 0.75rem);
   width: min(24rem, calc(100vw - 2rem));
@@ -89,16 +95,12 @@ p { max-width: 62ch; text-wrap: pretty; }
 .menu__panel a[aria-current] { background: var(--sc-surface); }
 @media (hover: hover) and (pointer: fine) { .menu__panel a:hover { background: var(--sc-surface); } }
 .menu__panel a[hreflang] { gap: 0.75rem; }
-.menu__label { display: block; padding: 0.875rem 1rem 0.25rem; color: var(--sc-ink-soft); border-top: 2px solid var(--sc-surface); margin-top: 0.5rem; }
 
 .flag { flex: none; width: 1.625rem; height: 1.0833rem; border-radius: 3px; box-shadow: 0 0 0 1px rgba(15, 21, 51, 0.22); }
 
 /* --------------------------------------------------------- title page -- */
-.langs { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; padding: 0.25rem; background: var(--sc-surface); border-radius: 26px; }
-.langs a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 3rem; padding-inline: 0.875rem; font-weight: 700; color: var(--sc-accent); border-radius: var(--sc-r-pill); text-decoration: none; }
-.langs a[aria-current] { color: #fff; background: var(--sc-ink); }
 .title { padding-block: clamp(1rem, 2.5vh, 2rem) clamp(2.5rem, 6vh, 4.5rem); }
-.title h1 { margin-top: clamp(1.5rem, 6vh, 4.5rem); font-size: min(clamp(3.5rem, 0.75rem + 13.2vw, 12rem), 22vh); line-height: 0.92; letter-spacing: -0.045em; }
+.title h1 { margin-top: clamp(0.75rem, 3vh, 2.5rem); font-size: min(clamp(3.5rem, 0.75rem + 13.2vw, 12rem), 22vh); line-height: 0.92; letter-spacing: -0.045em; }
 .title h1 small { display: block; font-family: var(--sc-font-text); font-weight: 400; font-size: clamp(1.375rem, 1.2rem + 0.9vw, 2rem); line-height: 1.2; letter-spacing: 0; margin-bottom: 0.625em; color: var(--sc-ink-soft); }
 .title__row { margin-top: clamp(1.75rem, 5vh, 3.5rem); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; align-items: end; }
 .title__facts { display: grid; gap: 0.5rem; }
@@ -264,7 +266,7 @@ figcaption { margin-top: 0.75rem; font-size: 1.0625rem; line-height: 1.4; color:
 /* Paper, when someone prints it for the sacristy or the car. */
 @media print {
   :root { --sc-canvas: #fff; --sc-surface: #fff; --sc-ink: #000; --sc-ink-soft: #000; --sc-accent: #000; }
-  .bar, .door, .index, .langs, .btn, .skip, .colophon__links, .where__strike, .rsvp, .sc-grain { display: none !important; }
+  .bar, .door, .index, .btn, .skip, .colophon__links, .where__strike, .rsvp, .sc-grain { display: none !important; }
   .chap--night, .chap--cobalt { --sc-canvas: #fff; --sc-surface: #fff; --sc-ink: #000; --sc-ink-soft: #000; background: #fff; color: #000; }
   body { font-size: 12pt; }
   .chap, .letter { padding-block: 1.25rem; }

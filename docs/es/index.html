@@ -29,14 +29,16 @@
 <header class="bar">
   <div class="wrap bar__in">
     <a class="bar__here" href="#top">Gian Maria</a>
-    <details class="menu">
-      <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>Menú</summary>
-      <nav class="menu__panel" aria-label="Menú">
-        <a href="#programma">Programa</a><a href="#dove">Lugar</a><a href="#parcheggi">Aparcamientos</a><a href="#rinfresco">Convite</a><a href="#dormire">Alojamiento</a><a href="#sacerdoti">Para sacerdotes</a><a href="#conferma">Confirmar</a>
-        <span class="menu__label">Idioma</span>
-        <a href="../" hreflang="it" lang="it" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg>Italiano</a><a href="../en/" hreflang="en" lang="en" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v40H0z"/><path stroke="#fff" stroke-width="8" d="M0 0l60 40M60 0L0 40"/><path stroke="#c8102e" stroke-width="3.5" d="M0 0l60 40M60 0L0 40"/><path stroke="#fff" stroke-width="13" d="M30 0v40M0 20h60"/><path stroke="#c8102e" stroke-width="8" d="M30 0v40M0 20h60"/></svg>English</a><a href="../fr/" hreflang="fr" lang="fr" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#0055a4" d="M0 0h20v40H0z"/><path fill="#ef4135" d="M40 0h20v40H40z"/></svg>Français</a><a href="../de/" hreflang="de" lang="de" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/></svg>Deutsch</a><a href="./" hreflang="es" lang="es" data-lang aria-current="true"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg>Español</a>
-      </nav>
-    </details>
+    <div class="bar__tools">
+      <details class="drop lang">
+        <summary aria-label="Idioma: Español"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg><span class="lang__name">Español</span><svg class="lang__caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></summary>
+        <nav class="menu__panel lang__panel" aria-label="Idioma"><a href="../" hreflang="it" lang="it" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg>Italiano</a><a href="../en/" hreflang="en" lang="en" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v40H0z"/><path stroke="#fff" stroke-width="8" d="M0 0l60 40M60 0L0 40"/><path stroke="#c8102e" stroke-width="3.5" d="M0 0l60 40M60 0L0 40"/><path stroke="#fff" stroke-width="13" d="M30 0v40M0 20h60"/><path stroke="#c8102e" stroke-width="8" d="M30 0v40M0 20h60"/></svg>English</a><a href="../fr/" hreflang="fr" lang="fr" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#0055a4" d="M0 0h20v40H0z"/><path fill="#ef4135" d="M40 0h20v40H40z"/></svg>Français</a><a href="../de/" hreflang="de" lang="de" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/></svg>Deutsch</a><a href="./" hreflang="es" lang="es" data-lang aria-current="true"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg>Español</a></nav>
+      </details>
+      <details class="drop menu">
+        <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>Menú</summary>
+        <nav class="menu__panel" aria-label="Menú"><a href="#programma">Programa</a><a href="#dove">Lugar</a><a href="#parcheggi">Aparcamientos</a><a href="#rinfresco">Convite</a><a href="#dormire">Alojamiento</a><a href="#sacerdoti">Para sacerdotes</a><a href="#conferma">Confirmar</a></nav>
+      </details>
+    </div>
   </div>
 </header>
 
@@ -44,7 +46,6 @@
 
   <section class="title" data-sc-act="flow">
     <div class="wrap">
-      <nav class="langs" aria-label="Idioma"><a href="../" hreflang="it" lang="it" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg>Italiano</a><a href="../en/" hreflang="en" lang="en" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v40H0z"/><path stroke="#fff" stroke-width="8" d="M0 0l60 40M60 0L0 40"/><path stroke="#c8102e" stroke-width="3.5" d="M0 0l60 40M60 0L0 40"/><path stroke="#fff" stroke-width="13" d="M30 0v40M0 20h60"/><path stroke="#c8102e" stroke-width="8" d="M30 0v40M0 20h60"/></svg>English</a><a href="../fr/" hreflang="fr" lang="fr" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#0055a4" d="M0 0h20v40H0z"/><path fill="#ef4135" d="M40 0h20v40H40z"/></svg>Français</a><a href="../de/" hreflang="de" lang="de" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/></svg>Deutsch</a><a href="./" hreflang="es" lang="es" data-lang aria-current="true"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg>Español</a></nav>
       <h1><small>Ordenación de</small>Gian Maria<br>Candelora</h1>
       <div class="title__row">
         <div class="title__facts">
@@ -244,14 +245,14 @@
       <div class="letter__grid">
         <div class="letter__body">
           <p>Queridos amigos:</p>
-          <p>para una mejor organización, os pido que confirméis vuestra asistencia antes del 2 de diciembre, con el código QR de la invitación o poniéndoos en contacto conmigo personalmente.</p>
+          <p>para una mejor organización, os pido que confirméis vuestra asistencia antes del 2 de diciembre, con este formulario o poniéndoos en contacto conmigo personalmente.</p>
           <p>Os ruego que indiquéis el número de participantes y las posibles intolerancias o necesidades alimentarias.</p>
           <p>Os agradezco infinitamente vuestra colaboración y comprensión, y os pido a todos que me acompañéis con la oración de cara a este gran acontecimiento.</p>
           <p>¡Hasta pronto!</p>
           <p class="letter__sign">Padre Gian Maria</p>
           
         </div>
-        <div class="letter__form"><form class="rsvp" method="post" action="https://script.google.com/macros/s/AKfycbwfpgJ8dYByPcc3TmAYg_bJS5IkFaXj9jfv5Se4DmhF8ZEbGtWqWYXSFIWqV6wKwSsW9Q/exec" data-sending="Enviando..." data-error="No se ha podido enviar: vuestra confirmación no ha llegado. Comprobad la conexión y volved a intentarlo, o usad el código QR de la invitación.">
+        <div class="letter__form"><form class="rsvp" method="post" action="https://script.google.com/macros/s/AKfycbwfpgJ8dYByPcc3TmAYg_bJS5IkFaXj9jfv5Se4DmhF8ZEbGtWqWYXSFIWqV6wKwSsW9Q/exec" data-sending="Enviando..." data-error="No se ha podido enviar: vuestra confirmación no ha llegado. Comprobad la conexión y volved a intentarlo, o contactad directamente con Gian Maria.">
           <div class="rsvp__trap" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></div>
           <div class="rsvp__field"><label for="f-name">Nombre y apellidos</label><input id="f-name" name="name" type="text" required maxlength="120" autocomplete="name"></div>
           <div class="rsvp__field"><label for="f-count">¿Cuántas personas sois?</label><input id="f-count" class="rsvp__count" name="people" type="number" inputmode="numeric" min="1" max="99" value="1" required></div>

@@ -125,14 +125,16 @@ ${alternates}
 <header class="bar">
   <div class="wrap bar__in">
     <a class="bar__here" href="#top">${esc((t.name.charAt(0).toUpperCase() + t.name.slice(1)).replace(" Candelora", ""))}</a>
-    <details class="menu">
-      <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>${esc(t.menu)}</summary>
-      <nav class="menu__panel" aria-label="${esc(t.menu)}">
-        ${navLinks}
-        <span class="menu__label">${esc(t.languages)}</span>
-        ${langLinks}
-      </nav>
-    </details>
+    <div class="bar__tools">
+      <details class="drop lang">
+        <summary aria-label="${esc(t.languages)}: ${LANG_NAMES[lang]}">${flag(lang)}<span class="lang__name">${LANG_NAMES[lang]}</span><svg class="lang__caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></summary>
+        <nav class="menu__panel lang__panel" aria-label="${esc(t.languages)}">${langLinks}</nav>
+      </details>
+      <details class="drop menu">
+        <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>${esc(t.menu)}</summary>
+        <nav class="menu__panel" aria-label="${esc(t.menu)}">${navLinks}</nav>
+      </details>
+    </div>
   </div>
 </header>
 
@@ -140,7 +142,6 @@ ${alternates}
 
   <section class="title" data-sc-act="flow">
     <div class="wrap">
-      <nav class="langs" aria-label="${esc(t.languages)}">${langLinks}</nav>
       <h1><small>${esc(t.kicker)}</small>${esc(t.name.replace(" Candelora", ""))}<br>Candelora</h1>
       <div class="title__row">
         <div class="title__facts">

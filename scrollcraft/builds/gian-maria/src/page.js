@@ -1,17 +1,23 @@
 // Small helpers only. The page is complete and usable without this file.
 (function () {
-  var menu = document.querySelector('.menu');
   var here = document.querySelector('.bar__here');
   var homeLabel = here ? here.textContent : '';
 
-  // The menu closes after a choice, on Escape, and when tapping elsewhere.
-  if (menu) {
-    menu.addEventListener('click', function (e) { if (e.target.closest('a')) menu.open = false; });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+  // Menus close after a choice, on Escape and when tapping elsewhere; only one stays open.
+  var drops = Array.prototype.slice.call(document.querySelectorAll('details.drop'));
+  drops.forEach(function (d) {
+    d.addEventListener('click', function (e) { if (e.target.closest('a')) d.open = false; });
+    d.addEventListener('toggle', function () {
+      if (d.open) drops.forEach(function (o) { if (o !== d) o.open = false; });
     });
-    document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
-  }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    drops.forEach(function (d) { if (d.open) { d.open = false; d.querySelector('summary').focus(); } });
+  });
+  document.addEventListener('click', function (e) {
+    drops.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; });
+  });
 
   // Switching language keeps your place on the page.
   document.querySelectorAll('[data-lang]').forEach(function (a) {

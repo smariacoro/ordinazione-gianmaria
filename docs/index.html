@@ -29,14 +29,16 @@
 <header class="bar">
   <div class="wrap bar__in">
     <a class="bar__here" href="#top">Gian Maria</a>
-    <details class="menu">
-      <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>Menu</summary>
-      <nav class="menu__panel" aria-label="Menu">
-        <a href="#programma">Programma</a><a href="#dove">Dove</a><a href="#parcheggi">Parcheggi</a><a href="#rinfresco">Rinfresco</a><a href="#dormire">Dormire</a><a href="#sacerdoti">Per i sacerdoti</a><a href="#conferma">Conferma</a>
-        <span class="menu__label">Lingua</span>
-        <a href="./" hreflang="it" lang="it" data-lang aria-current="true"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg>Italiano</a><a href="en/" hreflang="en" lang="en" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v40H0z"/><path stroke="#fff" stroke-width="8" d="M0 0l60 40M60 0L0 40"/><path stroke="#c8102e" stroke-width="3.5" d="M0 0l60 40M60 0L0 40"/><path stroke="#fff" stroke-width="13" d="M30 0v40M0 20h60"/><path stroke="#c8102e" stroke-width="8" d="M30 0v40M0 20h60"/></svg>English</a><a href="fr/" hreflang="fr" lang="fr" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#0055a4" d="M0 0h20v40H0z"/><path fill="#ef4135" d="M40 0h20v40H40z"/></svg>Français</a><a href="de/" hreflang="de" lang="de" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/></svg>Deutsch</a><a href="es/" hreflang="es" lang="es" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg>Español</a>
-      </nav>
-    </details>
+    <div class="bar__tools">
+      <details class="drop lang">
+        <summary aria-label="Lingua: Italiano"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg><span class="lang__name">Italiano</span><svg class="lang__caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></summary>
+        <nav class="menu__panel lang__panel" aria-label="Lingua"><a href="./" hreflang="it" lang="it" data-lang aria-current="true"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg>Italiano</a><a href="en/" hreflang="en" lang="en" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v40H0z"/><path stroke="#fff" stroke-width="8" d="M0 0l60 40M60 0L0 40"/><path stroke="#c8102e" stroke-width="3.5" d="M0 0l60 40M60 0L0 40"/><path stroke="#fff" stroke-width="13" d="M30 0v40M0 20h60"/><path stroke="#c8102e" stroke-width="8" d="M30 0v40M0 20h60"/></svg>English</a><a href="fr/" hreflang="fr" lang="fr" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#0055a4" d="M0 0h20v40H0z"/><path fill="#ef4135" d="M40 0h20v40H40z"/></svg>Français</a><a href="de/" hreflang="de" lang="de" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/></svg>Deutsch</a><a href="es/" hreflang="es" lang="es" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg>Español</a></nav>
+      </details>
+      <details class="drop menu">
+        <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>Menu</summary>
+        <nav class="menu__panel" aria-label="Menu"><a href="#programma">Programma</a><a href="#dove">Dove</a><a href="#parcheggi">Parcheggi</a><a href="#rinfresco">Rinfresco</a><a href="#dormire">Dormire</a><a href="#sacerdoti">Per i sacerdoti</a><a href="#conferma">Conferma</a></nav>
+      </details>
+    </div>
   </div>
 </header>
 
@@ -44,7 +46,6 @@
 
   <section class="title" data-sc-act="flow">
     <div class="wrap">
-      <nav class="langs" aria-label="Lingua"><a href="./" hreflang="it" lang="it" data-lang aria-current="true"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#009246" d="M0 0h20v40H0z"/><path fill="#ce2b37" d="M40 0h20v40H40z"/></svg>Italiano</a><a href="en/" hreflang="en" lang="en" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v40H0z"/><path stroke="#fff" stroke-width="8" d="M0 0l60 40M60 0L0 40"/><path stroke="#c8102e" stroke-width="3.5" d="M0 0l60 40M60 0L0 40"/><path stroke="#fff" stroke-width="13" d="M30 0v40M0 20h60"/><path stroke="#c8102e" stroke-width="8" d="M30 0v40M0 20h60"/></svg>English</a><a href="fr/" hreflang="fr" lang="fr" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#fff" d="M0 0h60v40H0z"/><path fill="#0055a4" d="M0 0h20v40H0z"/><path fill="#ef4135" d="M40 0h20v40H40z"/></svg>Français</a><a href="de/" hreflang="de" lang="de" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/></svg>Deutsch</a><a href="es/" hreflang="es" lang="es" data-lang><svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false"><path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/></svg>Español</a></nav>
       <h1><small>Ordinazione di</small>Gian Maria<br>Candelora</h1>
       <div class="title__row">
         <div class="title__facts">
@@ -244,14 +245,14 @@
       <div class="letter__grid">
         <div class="letter__body">
           <p>Amici carissimi,</p>
-          <p>per una più precisa organizzazione, vi chiedo di confermare la vostra presenza entro il 2 dicembre, usando il QR code che trovate nell'invito oppure contattandomi personalmente.</p>
+          <p>per una più precisa organizzazione, vi chiedo di confermare la vostra presenza entro il 2 dicembre, usando questo modulo oppure contattandomi personalmente.</p>
           <p>Vi chiedo di indicare il numero dei partecipanti ed eventuali tolleranze o esigenze alimentari.</p>
           <p>Vi ringrazio infinitamente per la vostra collaborazione e comprensione e chiedo a tutti di accompagnarmi con la preghiera in vista di questo grande evento.</p>
           <p>A presto!</p>
           <p class="letter__sign">Padre Gian Maria</p>
           
         </div>
-        <div class="letter__form"><form class="rsvp" method="post" action="https://script.google.com/macros/s/AKfycbwfpgJ8dYByPcc3TmAYg_bJS5IkFaXj9jfv5Se4DmhF8ZEbGtWqWYXSFIWqV6wKwSsW9Q/exec" data-sending="Invio in corso..." data-error="Invio non riuscito: la conferma non è arrivata. Controllate la connessione e riprovate, oppure usate il QR code dell'invito.">
+        <div class="letter__form"><form class="rsvp" method="post" action="https://script.google.com/macros/s/AKfycbwfpgJ8dYByPcc3TmAYg_bJS5IkFaXj9jfv5Se4DmhF8ZEbGtWqWYXSFIWqV6wKwSsW9Q/exec" data-sending="Invio in corso..." data-error="Invio non riuscito: la conferma non è arrivata. Controllate la connessione e riprovate, oppure contattate direttamente Gian Maria.">
           <div class="rsvp__trap" aria-hidden="true"><input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></div>
           <div class="rsvp__field"><label for="f-name">Nome e cognome</label><input id="f-name" name="name" type="text" required maxlength="120" autocomplete="name"></div>
           <div class="rsvp__field"><label for="f-count">Quante persone siete?</label><input id="f-count" class="rsvp__count" name="people" type="number" inputmode="numeric" min="1" max="99" value="1" required></div>
