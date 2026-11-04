@@ -109,3 +109,7 @@ User's words on the replies: "Qualcosa di semplice che GianMaria possa vedere. M
 ## Revision: the door
 
 User's words: "la transizione della seconda fascia a due immagini è poco smooth". The arch now glides toward the scroll position with an eased, time-based follow in page script, on its own compositor layers, with a soft start and landing. The act's span grows from 2.7 to 3.2. The engine stays untouched; reduced motion and no-script keep the plain stylesheet version.
+
+## Revision: loading
+
+User's words: "Sembra lentissimo a caricare le immagini", "Anche su pc sembra". Measured from GitHub Pages: 5.7 s for the altar, 2.6 s for the facade. Desktop photographs drop to 1600 and 1000 wide, phones get a portrait crop centred on the door, and tiny previews sit inside the page so a photograph is never an empty box.

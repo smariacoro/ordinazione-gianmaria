@@ -91,7 +91,7 @@
     var farImg = far.querySelector('img');
     var nearImg = stage.querySelector('.door__near img');
     var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var phone = window.matchMedia('(max-width: 860px)');
+    var phone = window.matchMedia('(max-width: 860px) and (orientation: portrait)');
     var progress = function () {
       var r = door.getBoundingClientRect();
       var travel = r.height - innerHeight;

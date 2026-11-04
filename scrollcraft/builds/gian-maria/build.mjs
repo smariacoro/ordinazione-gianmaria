@@ -39,10 +39,22 @@ const size = (name) => {
   const [w, h] = out.split(",").map(Number);
   dims[name] = { w, h };
 };
-img("facade.jpg", "facade-2200.webp", 2200); img("facade.jpg", "facade-1200.webp", 1200);
-img("altar.jpg", "altar-2200.webp", 2200); img("altar.jpg", "altar-1200.webp", 1200);
-img("castello.jpg", "castello-1100.webp", 1100);
-size("castello-1100.webp");
+// Desktop in two sizes, plus a portrait crop for phones that is centred on the door.
+img("facade.jpg", "facade-1600.webp", 1600, "", 58); img("facade.jpg", "facade-1000.webp", 1000, "", 58);
+img("altar.jpg", "altar-1600.webp", 1600, "", 56); img("altar.jpg", "altar-1000.webp", 1000, "", 56);
+img("facade.jpg", "facade-phone.webp", 640, "crop=1000:ih:1650:0", 54);
+img("altar.jpg", "altar-phone.webp", 640, "crop=1000:ih:1301:0", 50);
+img("castello.jpg", "castello-900.webp", 900, "", 62);
+// Tiny previews, written into the page itself so they appear at once.
+const tiny = (src) => {
+  const out = path.join(A, "_tiny.webp");
+  execFileSync(FF, ["-hide_banner", "-loglevel", "error", "-y", "-i", path.join(HERE, "originals", src), "-vf", "scale=48:-2:flags=lanczos", "-c:v", "libwebp", "-quality", "40", out]);
+  const data = fs.readFileSync(out).toString("base64");
+  fs.rmSync(out);
+  return `data:image/webp;base64,${data}`;
+};
+const TINY = { facade: tiny("facade.jpg"), altar: tiny("altar.jpg") };
+size("castello-900.webp");
 // Share preview: WhatsApp and others are happier with a plain JPEG.
 execFileSync(FF, ["-hide_banner", "-loglevel", "error", "-y", "-i", path.join(HERE, "originals/altar.jpg"), "-vf", "scale=1200:-2", "-q:v", "4", path.join(A, "anteprima.jpg")]);
 // Licences that travel with the files they cover.
@@ -75,6 +87,7 @@ const FLAG_ART = {
 };
 const flag = (l) => `<svg class="flag" width="26" height="17" viewBox="0 0 60 40" aria-hidden="true" focusable="false">${FLAG_ART[l]}</svg>`;
 
+const PHONE_CROP = "(max-width: 860px) and (orientation: portrait)";
 const CHAPTERS = ["programma", "dove", "parcheggi", "rinfresco", "dormire", "sacerdoti", "conferma"];
 
 function page(lang) {
@@ -119,6 +132,8 @@ ${alternates}
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23131f3f'/><path d='M9 26V15a7 7 0 0 1 14 0v11z' fill='%23f4f5f1'/></svg>">
 <link rel="preload" href="${a("fonts/bricolage-grotesque-latin-700-normal.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${a("fonts/figtree-latin-400-normal.woff2")}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="${a("facade-phone.webp")}" media="${PHONE_CROP}" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="${a("facade-1000.webp")} 1000w, ${a("facade-1600.webp")} 1600w" imagesizes="100vw" media="(min-width: 861px), (orientation: landscape)" fetchpriority="high">
 <link rel="stylesheet" href="${a("scrollcraft.css")}?v=${VERSIONS["scrollcraft.css"]}">
 <link rel="stylesheet" href="${a("site.css")}?v=${VERSIONS["site.css"]}">
 <noscript><style>.rsvp{display:none}[data-sc-cue]{opacity:1!important}[data-sc-reveal]{clip-path:none!important}.door__stage{height:auto}.door__plane{position:static}.door__far{display:none}.door__greet{position:static;max-width:none;border-radius:0}.door__near img{height:60vh;transform:none!important}</style></noscript>
@@ -159,8 +174,8 @@ ${alternates}
 
   <section class="door" data-sc-act="pin" data-sc-span="3.2">
     <div class="door__stage" data-sc-stage>
-      <div class="door__plane door__near"><img src="${a("facade-2200.webp")}" srcset="${a("facade-1200.webp")} 1200w, ${a("facade-2200.webp")} 2200w" sizes="(orientation: portrait) 240vh, 100vw" alt="${esc(t.facadeAlt)}"></div>
-      <div class="door__plane door__far"><img src="${a("altar-2200.webp")}" srcset="${a("altar-1200.webp")} 1200w, ${a("altar-2200.webp")} 2200w" sizes="(orientation: portrait) 240vh, 100vw" alt="${esc(t.altarAlt)}"></div>
+      <div class="door__plane door__near" style="background-image:url(${TINY.facade})"><picture><source media="${PHONE_CROP}" srcset="${a("facade-phone.webp")}"><img src="${a("facade-1600.webp")}" srcset="${a("facade-1000.webp")} 1000w, ${a("facade-1600.webp")} 1600w" sizes="100vw" alt="${esc(t.facadeAlt)}" fetchpriority="high" decoding="async"></picture></div>
+      <div class="door__plane door__far" style="background-image:url(${TINY.altar})"><picture><source media="${PHONE_CROP}" srcset="${a("altar-phone.webp")}"><img src="${a("altar-1600.webp")}" srcset="${a("altar-1000.webp")} 1000w, ${a("altar-1600.webp")} 1600w" sizes="100vw" alt="${esc(t.altarAlt)}" decoding="async"></picture></div>
       <p class="door__greet" data-sc-cue="0.74 1 0.08 0"><strong>${esc(t.greetA)}</strong> ${esc(t.greetB)}</p>
     </div>
   </section>
@@ -201,7 +216,7 @@ ${alternates}
         <h2>${esc(t.parkTitle)}</h2>
         <p class="lede" style="margin-top:1.25rem">${esc(t.parkIntro)}</p>
         <figure style="margin-top:1.75rem">
-          <div class="frame" data-sc-reveal="up" data-sc-reveal-at="0 0.08"><img src="${a("castello-1100.webp")}" width="${dims["castello-1100.webp"].w}" height="${dims["castello-1100.webp"].h}" alt="${esc(t.castleAlt)}" loading="lazy" decoding="async" data-sc-parallax="0.5"></div>
+          <div class="frame" data-sc-reveal="up" data-sc-reveal-at="0 0.08"><img src="${a("castello-900.webp")}" width="${dims["castello-900.webp"].w}" height="${dims["castello-900.webp"].h}" alt="${esc(t.castleAlt)}" loading="lazy" decoding="async" data-sc-parallax="0.5"></div>
           <figcaption>${esc(t.castleCap)}</figcaption>
         </figure>
       </div>
