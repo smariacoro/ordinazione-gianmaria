@@ -105,3 +105,7 @@ User's words: "Possiamo farlo un po' più moderno? Poi non mettere "fra" nel tit
 The structure (title page, door, chapters, closing letter) and the signature move stay. The aesthetic family moves from editorial to contemporary: Bricolage Grotesque for display, Figtree for text, vivid cobalt, rounded panels, a floating bar, very large type. The etching is removed because it pulled the page backward. "Fra" is gone from the title, the page title and the bar; it stays in running text and in calendar entries, where it is part of the sentence.
 
 User's words on the replies: "Qualcosa di semplice che GianMaria possa vedere. Magari un documento condiviso tra me e lui (anche google) dove il colpo d'occhio del numero totale e delle persone è importantissimo". The form therefore writes to a shared Google Sheet through an Apps Script web app (`foglio-google/conferme.gs`), with the total in very large type frozen at the top. The sheet exists and was tested end to end with a real submission. The form stays hidden if `RSVP_ENDPOINT` is empty and only thanks the visitor after the script has answered yes.
+
+## Revision: the door
+
+User's words: "la transizione della seconda fascia a due immagini è poco smooth". The arch now glides toward the scroll position with an eased, time-based follow in page script, on its own compositor layers, with a soft start and landing. The act's span grows from 2.7 to 3.2. The engine stays untouched; reduced motion and no-script keep the plain stylesheet version.

@@ -3,6 +3,7 @@
 // Writes one real HTML page per language, so language links work without scripts.
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { T, LANGS, LANG_NAMES, MAPS, PARKING, STAY, SITE_URL, RSVP_ENDPOINT, RSVP_URL, RSVP_PHONE, RSVP_EMAIL } from "./src/content.mjs";
@@ -49,6 +50,9 @@ fs.copyFileSync(path.join(ENGINE, "../LICENSE"), path.join(A, "scrollcraft-LICEN
 fs.copyFileSync(path.join(HERE, "node_modules/@fontsource/bricolage-grotesque/LICENSE"), path.join(A, "fonts/bricolage-grotesque-LICENSE.txt"));
 fs.copyFileSync(path.join(HERE, "node_modules/@fontsource/figtree/LICENSE"), path.join(A, "fonts/figtree-LICENSE.txt"));
 
+const fingerprint = (f) => createHash("sha256").update(fs.readFileSync(path.join(A, f))).digest("hex").slice(0, 10);
+const VERSIONS = Object.fromEntries(["scrollcraft.css", "site.css", "scrollcraft.js", "page.js"].map((f) => [f, fingerprint(f)]));
+
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const ext = 'target="_blank" rel="noopener"';
 
@@ -69,7 +73,7 @@ const FLAG_ART = {
   de: '<path fill="#000" d="M0 0h60v14H0z"/><path fill="#d00" d="M0 13.3h60v14H0z"/><path fill="#ffce00" d="M0 26.7h60V40H0z"/>',
   es: '<path fill="#c60b1e" d="M0 0h60v40H0z"/><path fill="#ffc400" d="M0 10h60v20H0z"/>',
 };
-const flag = (l) => `<svg class="flag" viewBox="0 0 60 40" aria-hidden="true" focusable="false">${FLAG_ART[l]}</svg>`;
+const flag = (l) => `<svg class="flag" width="26" height="17" viewBox="0 0 60 40" aria-hidden="true" focusable="false">${FLAG_ART[l]}</svg>`;
 
 const CHAPTERS = ["programma", "dove", "parcheggi", "rinfresco", "dormire", "sacerdoti", "conferma"];
 
@@ -115,8 +119,8 @@ ${alternates}
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23131f3f'/><path d='M9 26V15a7 7 0 0 1 14 0v11z' fill='%23f4f5f1'/></svg>">
 <link rel="preload" href="${a("fonts/bricolage-grotesque-latin-700-normal.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${a("fonts/figtree-latin-400-normal.woff2")}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${a("scrollcraft.css")}">
-<link rel="stylesheet" href="${a("site.css")}">
+<link rel="stylesheet" href="${a("scrollcraft.css")}?v=${VERSIONS["scrollcraft.css"]}">
+<link rel="stylesheet" href="${a("site.css")}?v=${VERSIONS["site.css"]}">
 <noscript><style>.rsvp{display:none}[data-sc-cue]{opacity:1!important}[data-sc-reveal]{clip-path:none!important}.door__stage{height:auto}.door__plane{position:static}.door__far{display:none}.door__greet{position:static;max-width:none;border-radius:0}.door__near img{height:60vh;transform:none!important}</style></noscript>
 </head>
 <body>
@@ -127,11 +131,11 @@ ${alternates}
     <a class="bar__here" href="#top">${esc((t.name.charAt(0).toUpperCase() + t.name.slice(1)).replace(" Candelora", ""))}</a>
     <div class="bar__tools">
       <details class="drop lang">
-        <summary aria-label="${esc(t.languages)}: ${LANG_NAMES[lang]}">${flag(lang)}<span class="lang__name">${LANG_NAMES[lang]}</span><svg class="lang__caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></summary>
+        <summary aria-label="${esc(t.languages)}: ${LANG_NAMES[lang]}">${flag(lang)}<span class="lang__name">${LANG_NAMES[lang]}</span><svg class="lang__caret" width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></summary>
         <nav class="menu__panel lang__panel" aria-label="${esc(t.languages)}">${langLinks}</nav>
       </details>
       <details class="drop menu">
-        <summary><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>${esc(t.menu)}</summary>
+        <summary><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2.4"/></svg>${esc(t.menu)}</summary>
         <nav class="menu__panel" aria-label="${esc(t.menu)}">${navLinks}</nav>
       </details>
     </div>
@@ -153,10 +157,10 @@ ${alternates}
     </div>
   </section>
 
-  <section class="door" data-sc-act="pin" data-sc-span="2.7">
+  <section class="door" data-sc-act="pin" data-sc-span="3.2">
     <div class="door__stage" data-sc-stage>
-      <div class="door__plane door__near"><img src="${a("facade-2200.webp")}" srcset="${a("facade-1200.webp")} 1200w, ${a("facade-2200.webp")} 2200w" sizes="(orientation: portrait) 240vh, 100vw" alt="${esc(t.facadeAlt)}" decoding="async"></div>
-      <div class="door__plane door__far"><img src="${a("altar-2200.webp")}" srcset="${a("altar-1200.webp")} 1200w, ${a("altar-2200.webp")} 2200w" sizes="(orientation: portrait) 240vh, 100vw" alt="${esc(t.altarAlt)}" decoding="async"></div>
+      <div class="door__plane door__near"><img src="${a("facade-2200.webp")}" srcset="${a("facade-1200.webp")} 1200w, ${a("facade-2200.webp")} 2200w" sizes="(orientation: portrait) 240vh, 100vw" alt="${esc(t.facadeAlt)}"></div>
+      <div class="door__plane door__far"><img src="${a("altar-2200.webp")}" srcset="${a("altar-1200.webp")} 1200w, ${a("altar-2200.webp")} 2200w" sizes="(orientation: portrait) 240vh, 100vw" alt="${esc(t.altarAlt)}"></div>
       <p class="door__greet" data-sc-cue="0.74 1 0.08 0"><strong>${esc(t.greetA)}</strong> ${esc(t.greetB)}</p>
     </div>
   </section>
@@ -280,8 +284,8 @@ ${alternates}
 
 </main>
 
-<script src="${a("scrollcraft.js")}"></script>
-<script src="${a("page.js")}"></script>
+<script src="${a("scrollcraft.js")}?v=${VERSIONS["scrollcraft.js"]}"></script>
+<script src="${a("page.js")}?v=${VERSIONS["page.js"]}"></script>
 </body>
 </html>
 `;

@@ -81,18 +81,69 @@
 
   if (window.ScrollCraft) window.ScrollCraft.mount(document.body);
 
-  // The door is drawn in CSS, so tell the verification harness what it paints:
-  // how far the arch has opened, and when the altar is resolved and holding.
+  // The door glides: the arch eases toward the scroll position instead of jumping
+  // with each notch of the wheel. Without this script, or with reduced motion, the
+  // stylesheet draws it directly from scroll progress.
   var door = document.querySelector('.door');
   var stage = door && door.querySelector('.door__stage');
   if (stage) {
-    var report = function () {
-      var p = parseFloat(getComputedStyle(door).getPropertyValue('--sc-p')) || 0;
-      var a = Math.max(0, Math.min(1, (p - 0.05) / 0.68));
+    var far = stage.querySelector('.door__far');
+    var farImg = far.querySelector('img');
+    var nearImg = stage.querySelector('.door__near img');
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var phone = window.matchMedia('(max-width: 860px)');
+    var progress = function () {
+      var r = door.getBoundingClientRect();
+      var travel = r.height - innerHeight;
+      return travel > 0 ? Math.max(0, Math.min(1, -r.top / travel)) : 0;
+    };
+    var opening = function (p) { return Math.max(0, Math.min(1, (p - 0.05) / 0.68)); };
+    // Soft start and soft landing.
+    var soft = function (x) { return x * x * x * (x * (6 * x - 15) + 10); };
+    var cur = opening(progress());
+    var last = 0;
+    var running = false;
+    var report = function (p, a) {
       stage.setAttribute('data-sc-verify-state', a.toFixed(2));
       stage.setAttribute('data-sc-verify-hold', p > 0.82 || p < 0.05 ? 'true' : 'false');
     };
-    addEventListener('scroll', report, { passive: true });
-    report();
+    var paint = function (a) {
+      var x = phone.matches ? 50 : 58;
+      var y = phone.matches ? 70 : 72;
+      var e = soft(a);
+      var arch = Math.min(e * 50, (1 - e) * 120);
+      far.style.clipPath = 'inset(' + (y * (1 - e)).toFixed(3) + '% ' + ((100 - x) * (1 - e)).toFixed(3) + '% 0 ' + (x * (1 - e)).toFixed(3) + '% round ' + arch.toFixed(3) + 'vw ' + arch.toFixed(3) + 'vw 0 0)';
+      nearImg.style.transform = 'scale(' + (1 + 0.28 * e).toFixed(5) + ')';
+      farImg.style.transform = 'scale(' + (1.14 - 0.14 * e).toFixed(5) + ')';
+    };
+    var frame = function (t) {
+      var p = progress();
+      var target = opening(p);
+      var dt = last ? Math.min(t - last, 64) : 16;
+      last = t;
+      cur += (target - cur) * (1 - Math.exp(-dt / 110));
+      if (Math.abs(target - cur) < 0.0008) cur = target;
+      paint(cur);
+      report(p, cur);
+      if (cur !== target) { requestAnimationFrame(frame); } else { running = false; last = 0; }
+    };
+    var wake = function () {
+      if (running) return;
+      running = true;
+      requestAnimationFrame(frame);
+    };
+    if (calm) {
+      var calmReport = function () { var p = progress(); report(p, opening(p)); };
+      addEventListener('scroll', calmReport, { passive: true });
+      calmReport();
+    } else {
+      // Decode both photographs ahead of time, so the first reveal never stutters.
+      [farImg, nearImg].forEach(function (i) { if (i.decode) i.decode().catch(function () {}); });
+      stage.classList.add('door__stage--live');
+      paint(cur);
+      report(progress(), cur);
+      addEventListener('scroll', wake, { passive: true });
+      addEventListener('resize', wake, { passive: true });
+    }
   }
 })();

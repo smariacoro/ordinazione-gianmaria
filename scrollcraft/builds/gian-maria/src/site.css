@@ -154,6 +154,10 @@ p { max-width: 62ch; text-wrap: pretty; }
   .door__far img, .door__near img { transform: none; }
 }
 
+/* While the script drives the door, keep each photograph on its own layer. */
+.door__stage--live .door__near img, .door__stage--live .door__far img { will-change: transform; }
+.door__stage--live .door__far { will-change: clip-path; }
+
 /* ------------------------------------------------------------- index -- */
 .index { padding-block: clamp(2.5rem, 5vw, 4rem) 0; }
 .index__t { font-size: clamp(1.625rem, 1.4rem + 1vw, 2.25rem); letter-spacing: -0.02em; line-height: 1.1; }
