@@ -70,7 +70,7 @@ const ext = 'target="_blank" rel="noopener"';
 
 const ics = (t) => [
   "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Ordinazione fra Gian Maria//IT", "CALSCALE:GREGORIAN",
-  "BEGIN:VEVENT", "UID:ordinazione-20261212@gian-maria", "DTSTAMP:20261104T120000Z", "DTSTART:20261212T100000Z", "DTEND:20261212T120000Z",
+  "BEGIN:VEVENT", "UID:ordinazione-20261212@gian-maria", "DTSTAMP:20261104T120000Z", "DTSTART:20261212T093000Z", "DTEND:20261212T120000Z",
   `SUMMARY:${t.cal1}`, `LOCATION:${"Corso Cardinali Vannutelli 2\\, Genazzano (RM)"}`, "END:VEVENT",
   "BEGIN:VEVENT", "UID:primamessa-20261213@gian-maria", "DTSTAMP:20261104T120000Z", "DTSTART:20261213T101500Z",
   `SUMMARY:${t.cal2}`, `LOCATION:${"Corso Cardinali Vannutelli 2\\, Genazzano (RM)"}`, "END:VEVENT",
